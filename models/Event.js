@@ -34,5 +34,33 @@ const eventSchema = new mongoose.Schema({
         type: String,
         enum: ["workshop", "social", "competition", "volunteering", "other"],
         required: true
+    },
+
+    category: {
+        type: String,
+        required: true
+    },
+
+    totalSlots: {
+        type: Number
+    },
+
+    status: {
+        type: String,
+        enum: ["open", "closed"],
+        required: true
+    },
+
+    createdBy: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+        required: true
+    },
+
+    createdAt: {
+        type: Date,
+        default: Date.now
     }
 });
+
+module.exports = mongoose.model("Event", eventSchema);
